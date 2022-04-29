@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+    <style>
+        body>h1{
+                text-align: center;
+                margin-bottom: 60px;
+            }
+            #container{
+                display: grid;
+                width: 80%;
+                margin: auto;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: auto;
+                gap: 20px;
+                /* border: 1px solid black; */
+            }
+            #container>div{
+                text-align: center;
+                border-radius: 10px;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            
+            }
+            #container>div>img{
+                width: 100%;
+                margin-bottom: -20px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+           
+            #container>div>img~img{
+                width: 120px;
+                margin-bottom: 5px;
+            }
+    </style>
+
+</head>
+<body>
+        <h1>Strategic Investors</h1>
+
+        <div id="container"></div>
+</body>
+</html>
+
+<script>
+     var investorArray = JSON.parse(localStorage.getItem("investorData"))
+     console.log(investorArray)
+
+// display data in form of cards
+     investorArray.forEach(function(el){
+        var box = document.createElement("div");
+
+        var image = document.createElement("img")
+        image.setAttribute("src",el.investorImg);
+
+        var name = document.createElement("h3")
+        name.innerText = el.investorName;
+
+        var profile = document.createElement("p")
+        profile.innerText = el.investorProfile;
+
+        var companyLogo = document.createElement("img")
+        companyLogo.setAttribute("src",el.investorCompanyLogo);
+
+        box.append(image,name,profile,companyLogo)
+
+        document.querySelector("#container").append(box)
+
+     })
+</script>
