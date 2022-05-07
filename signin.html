@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN IN</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+    <h1>MASAI</h1>
+    <form id="form">
+        <h3>Sign In</h3>
+        <label for="">Email</label>
+        <br />
+        <input id="email" type="text" placeholder="Email Id">
+        <br>
+        <label for="">Password</label>
+        <br />
+        <input id="password" type="text" placeholder="Password">
+        <br>
+        <input type="submit" value="SIGN IN" />
+        <p>Don't have a account?<span><a href="signup.html">Sign Up</a></span></p>
+</body>
+</html>
+
+<script>
+
+    var signupArray = JSON.parse(localStorage.getItem("signupData"))
+
+    console.log(signupArray)
+
+
+    document.querySelector("#form"),addEventListener("submit", signInFunc)
+
+    function signInFunc(){
+
+        event.preventDefault();
+
+        var signinobj = {
+            email : form.email.value,
+            pwd : form.password.value,
+        }
+        console.log(signinobj)
+
+            if(signupArray==null)
+            {
+                alert("Please Sign Up First !")
+            }
+            // else if(signupArray.email==signinobj.email && signupArray.pwd==signinobj.password)
+            // {
+            //     alert("Sign In Successfull !")
+            // }
+            // else
+            // {
+            //     alert("Invalid Email or Password ")
+            //     console.log(signupArray.email)
+            // }
+            else {
+	        for(let i=0; i<= signupArray.length; ++i) {
+		    if (signupArray[i].email == signinobj.email && signupArray[i].pwd == signinobj.pwd) {
+    		alert("Sign In Successfull !")
+            }
+            else
+            {
+                alert("Invalid Email or Password ")
+                // console.log(signupArray.email)
+            }
+
+            }
+            }
+
+            localStorage.setItem("signinData",JSON.stringify(signinobj));
+            form.email.value = "";
+            form.password.value = "";
+
+            }
+    
+
+            // var signinData = JSON.parse(localStorage.getItem("signinData"));
+    
+</script>
